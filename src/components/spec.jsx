@@ -13,6 +13,8 @@ function Spec({imageurl, desc}){
                   src={imageurl}
                   alt="Agastya Maharishi"
                   className="self-center max-w-full aspect-[0.66] w-[290px]"
+                  width={400}
+                  height={600}
                 />
               </div>
             </aside>

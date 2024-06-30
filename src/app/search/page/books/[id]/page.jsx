@@ -16,6 +16,20 @@ async function fetchData(id) {
     return res.data;
 }
 
+function urlformat(url){
+  if (!url){
+    return "/placeholdbig.svg"
+  }
+  const array = String(url).split(",");
+  if (!array){
+    return `https://drive.usercontent.google.com/download?id=${url.slice(33)}`
+
+  }
+  return `https://drive.google.com/uc?export=download&id=${array[0].slice(33)}`
+  
+}
+
+
 function Page({ params }) {
   const { id } = params;
   
@@ -48,7 +62,7 @@ function Page({ params }) {
     <>
       <Nav activeItem="Search"/>
       <Banner title={String(itemData.data['Book Name'])} breadcrumb={["Back to Search"]}/>
-      <Spec imageurl="/placeholdbig.svg" desc={Object.entries(itemData.data).map(([key, value], index) => (
+      <Spec imageurl={urlformat(itemData.data["Image of the Book"] || '')} desc={Object.entries(itemData.data).map(([key, value], index) => (
         // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
 <p key={index}>{`${key}: ${value}`}</p>
       ))} />

@@ -26,6 +26,19 @@ async function fetchData(query) {
   }
 }
 
+function urlformat(url){
+  if (!url){
+    return "/placehold.svg"
+  }
+  const array = String(url).split(",");
+  if (!array){
+    return `https://drive.usercontent.google.com/download?id=${url.slice(33)}`
+
+  }
+  return `https://drive.google.com/uc?export=download&id=${array[0].slice(33)}`
+  
+}
+
 function Page() {
   const [log, setLog] = useState([]);
   const router = useRouter();
@@ -102,19 +115,25 @@ function Page() {
               <div key={index} className="rounded-lg border w-[96%] ml-[2%] md:w-[80%] md:ml-[10%]">
                 <div className="flex flex-row justify-between items-start px-10 py-5">
                   <div className="w-[50%]">
-                    <h1 className=" whitespace-nowrap  text-ellipsis overflow-x-hidden font-bold text-2xl">
+                    <h1 className="whitespace-nowrap text-ellipsis overflow-x-hidden font-bold text-2xl">
                       {item["Artefact Title"] || item["Book Name"]}
                     </h1>
-                    <h2 className="whitespace-nowrap  text-ellipsis overflow-x-hidden">
+                    <h2 className="whitespace-nowrap text-ellipsis overflow-x-hidden">
                       {item["Artefact Description"] || item["Description of Book"]}
                     </h2>
-                    <Button><Link href={`/search/page/${item["Artefact Title"] ? "museum" : "books"}/${item._id.$oid}`}>View Details</Link></Button>
+                    <Button>
+                      <Link href={`/search/page/${item["Artefact Title"] ? "museum" : "books"}/${item._id.$oid}`}>
+                        View Details
+                      </Link>
+                    </Button>
                   </div>
                   <div>
                     <Image
                       className=""
-                      src="/placehold.svg"
-                      alt={item["Artefact Title"] || item["Book Name"]}
+                      src={urlformat(item["Image of the Book"] || item.Multimedia)}
+                      alt={`${item["Artefact Title"] || item["Book Name"]}`}
+                      width={82}
+                      height={95}
                     />
                   </div>
                 </div>
