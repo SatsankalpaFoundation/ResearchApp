@@ -113,7 +113,7 @@ function Page() {
                   <div>
                     <Image
                       className="w-[82px]"
-                      src="https://placeholder.co/82x95"
+                      src="https://placehold.co/82x95"
                       alt={item["Artefact Title"] || item["Book Name"]}
                     />
                   </div>
