@@ -11,7 +11,7 @@ const RING_PROPAGATION_SPEED = 3
 const aspect = 1.2
 const cameraZ = 300
 
-let numbersOfRings = [0]
+const numbersOfRings = [0]
 
 export function Globe({ globeConfig, data }) {
   const [globeData, setGlobeData] = useState(null)
@@ -35,13 +35,10 @@ export function Globe({ globeConfig, data }) {
     ...globeConfig
   }
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
-    if (globeRef.current) {
-      _buildData()
-      _buildMaterial()
-    }
-  }, [globeRef.current])
+    _buildData()
+    _buildMaterial()
+  }, [])
 
   const _buildMaterial = () => {
     if (!globeRef.current) return
@@ -55,8 +52,7 @@ export function Globe({ globeConfig, data }) {
 
   const _buildData = () => {
     const arcs = data
-    // biome-ignore lint/style/useConst: <explanation>
-    let points = []
+    const points = []
     for (let i = 0; i < arcs.length; i++) {
       const arc = arcs[i]
       const rgb = hexToRgb(arc.color)
@@ -85,7 +81,6 @@ export function Globe({ globeConfig, data }) {
     setGlobeData(filteredPoints)
   }
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     if (globeRef.current && globeData) {
       globeRef.current
@@ -95,12 +90,10 @@ export function Globe({ globeConfig, data }) {
         .showAtmosphere(defaultProps.showAtmosphere)
         .atmosphereColor(defaultProps.atmosphereColor)
         .atmosphereAltitude(defaultProps.atmosphereAltitude)
-        .hexPolygonColor(e => {
-          return defaultProps.polygonColor
-        })
+        .hexPolygonColor(() => defaultProps.polygonColor)
       startAnimation()
     }
-  }, [globeData])
+  }, [globeData, defaultProps.atmosphereAltitude, defaultProps.atmosphereColor, defaultProps.polygonColor, defaultProps.showAtmosphere])
 
   const startAnimation = () => {
     if (!globeRef.current || !globeData) return
@@ -140,13 +133,12 @@ export function Globe({ globeConfig, data }) {
       )
   }
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     if (!globeRef.current || !globeData) return
 
     const interval = setInterval(() => {
       if (!globeRef.current || !globeData) return
-      numbersOfRings = genRandomNumbers(
+      const numbersOfRings = genRandomNumbers(
         0,
         data.length,
         Math.floor((data.length * 4) / 5)
@@ -160,7 +152,7 @@ export function Globe({ globeConfig, data }) {
     return () => {
       clearInterval(interval)
     }
-  }, [globeRef.current, globeData])
+  }, [globeData, data.length])
 
   return (
     <>
@@ -172,12 +164,11 @@ export function Globe({ globeConfig, data }) {
 export function WebGLRendererConfig() {
   const { gl, size } = useThree()
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     gl.setPixelRatio(window.devicePixelRatio)
     gl.setSize(size.width, size.height)
     gl.setClearColor(0xffaaff, 0)
-  }, [])
+  }, [gl, size.width, size.height])
 
   return null
 }
@@ -219,15 +210,9 @@ export function World(props) {
 }
 
 export function hexToRgb(hex) {
-  // biome-ignore lint/style/noVar: <explanation>
-  var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-  // biome-ignore lint/complexity/useArrowFunction: <explanation>
-  const expandedHex = hex.replace(shorthandRegex, function (m, r, g, b) {
-    return r + r + g + g + b + b;
-  });
-
-  // biome-ignore lint/style/noVar: <explanation>
-  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(expandedHex);
+  const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+  const expandedHex = hex.replace(shorthandRegex, (m, r, g, b) => r + r + g + g + b + b);
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(expandedHex);
   return result
     ? {
         r: Number.parseInt(result[1], 16),

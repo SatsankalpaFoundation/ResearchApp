@@ -41,6 +41,8 @@ const AccordionItemTrigger = React.forwardRef(({ className, children, ...props }
   </AccordionPrimitive.Header>
 ))
 AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName
+AccordionItemTrigger.displayName = AccordionPrimitive.Trigger.displayName
+
 
 const AccordionContent = React.forwardRef(({ className, children, ...props }, ref) => (
   <AccordionPrimitive.Content

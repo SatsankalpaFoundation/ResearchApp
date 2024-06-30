@@ -10,6 +10,7 @@ import BackgroundGradient from "@/components/ui/background-gradient";
 import { Input } from "@/components/ui/input";
 import { HashLoader} from "react-spinners";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 import  Link  from "next/link";
 async function fetchData(query) {
   if (!query) {
@@ -110,7 +111,7 @@ function Page() {
                     <Button><Link href={`/search/page/${item["Artefact Title"] ? "museum" : "books"}/${item._id.$oid}`}>View Details</Link></Button>
                   </div>
                   <div>
-                    <img
+                    <Image
                       className="w-[82px]"
                       src="https://placeholder.co/82x95"
                       alt={item["Artefact Title"] || item["Book Name"]}
@@ -129,7 +130,7 @@ function Page() {
           }}
           aria-label="Loading Spinner"
           data-testid="loader"
-          /></> : <h1 className="text-center text-2xl font-bold">What's on your mind today?</h1>)}
+          /></> : <h1 className="text-center text-2xl font-bold">Whats on your mind today?</h1>)}
         </div>
       </div>
       <Footer />

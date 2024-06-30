@@ -1,5 +1,6 @@
 "use client";
 import { Button } from "./ui/button";
+import Image from "next/image";
 
 function Spec({imageurl, desc}){
     return(
@@ -8,7 +9,7 @@ function Spec({imageurl, desc}){
           <div className="flex gap-5 max-md:flex-col max-md:gap-0">
             <aside className="flex flex-col w-[38%] max-md:ml-0 max-md:w-full">
               <div className="flex flex-col justify-start py-8 w-full text-lg rounded-lg border border-solid shadow-sm bg-zinc-950 border-zinc-800 text-zinc-900 max-md:mt-10 max-md:max-w-full">
-                <img
+                <Image
                   src={imageurl}
                   alt="Agastya Maharishi"
                   className="self-center max-w-full aspect-[0.66] w-[290px]"
