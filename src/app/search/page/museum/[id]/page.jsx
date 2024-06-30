@@ -49,7 +49,7 @@ function Page({ params }) {
     <>
       <Nav activeItem="Search"/>
       <Banner title={String(itemData.data['Artefact Title'])} breadcrumb={["Back to Search"]}/>
-      <Spec imageurl="https://placehold.co/400x600" desc={Object.entries(itemData.data).map(([key, value], index) => (
+      <Spec imageurl="/placeholdbig.svg" desc={Object.entries(itemData.data).map(([key, value], index) => (
         // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
 <p key={index}>{`${key}: ${value}`}</p>
       ))} />
