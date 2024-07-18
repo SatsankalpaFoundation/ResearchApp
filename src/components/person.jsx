@@ -11,7 +11,9 @@ function Person({imageurl, desc}){
               <div className="flex flex-col justify-start py-8 w-full text-lg rounded-lg border border-solid shadow-sm bg-zinc-950 border-zinc-800 text-zinc-900 max-md:mt-10 max-md:max-w-full">
                 <Image
                   src={imageurl}
-                  alt="Agastya Maharishi"
+                  alt="Maharishi"
+                  width={290}
+                  height={439}
                   className="self-center max-w-full aspect-[0.66] w-[290px]"
                 />
                 <div className="flex flex-col justify-between px-8 pb-8 mt-6 max-md:px-5 max-md:max-w-full">
