@@ -1,15 +1,19 @@
 /** @type {import('next').NextConfig} */
-export const experimental = {
-    missingSuspenseWithCSRBailout: false,
+const nextConfig = {
+  experimental: {
+      missingSuspenseWithCSRBailout: false,
+  },
+  images: {
+      remotePatterns: [
+          {
+              protocol: 'https',
+              hostname: '**',
+              port: '',
+              pathname: '**',
+          },
+      ],
+      domains: ['*'],
+  }
 };
 
-export const images = {
-    remotePatterns: [
-        {
-          protocol: 'https',
-          hostname: '**',
-          port: '',
-          pathname: '**',
-        },
-      ],
-}
+export default nextConfig;

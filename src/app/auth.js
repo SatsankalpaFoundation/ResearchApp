@@ -4,30 +4,6 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import mongoose from "mongoose";
 import connect from "@/lib/db";
 
-const users = [
-    {
-      name: "Eshwar Balaji Yogesh",
-      email: "eshwarbalajiyogesh@gmail.com",
-      password: "password"
-    },
-    {
-       name: "Eshwar Balaji Yogesh",
-
-      email: "alex@email.com",
-      password: "password"
-    },
-    {
-        name: "Eshwar Balaji Yogesh",
-
-      email: "bob@email.com",
-      password: "password"
-    }
-  ]
-  
-const getUserByEmail = (email) => {
-    const found = users.find(user => user.email === email);
-    return found;
-  }
 
 export const {
     handlers: { GET, POST },
@@ -51,6 +27,7 @@ export const {
                 if (credentials === null) return null;
                 
                 try {
+
                     const user = getUserByEmail(credentials?.email);
                     console.log(user);
                     if (user) {
@@ -58,16 +35,14 @@ export const {
 
                         if (isMatch) {
                             return user;
-                        // biome-ignore lint/style/noUselessElse: <explanation>
-                        } else {
-                            throw new Error("Email or Password is not correct");
                         }
+                            throw new Error("Email or Password is not correct");
                     // biome-ignore lint/style/noUselessElse: <explanation>
                     } else {
-                        throw new Error("User not found");
+                        console.log("User not found");
                     }
                 } catch (error) {
-                    throw new Error(error);
+                    console.log(error);
                 }
             },
         }),
@@ -83,7 +58,9 @@ export const {
             },
             async profile(profile) {
                 console.log(profile)
-                const user = getUserByEmail(profile.email)
+                await connect();
+                const UserModel = mongoose.models.users || mongoose.model('users', new mongoose.Schema({}, { strict: false }), 'users');
+                const user = await UserModel.findOne({ email: profile.email });
                 if (user) {
                     return user;
                 }
@@ -93,5 +70,21 @@ export const {
             
         }),
     ],
+    callbacks: {
+        async jwt({ token, user }) {
+            if (user) {
+                token.user = {
+                    ...user,
+                    id: user.id,
+                };
+            }
+            return token;
+        },
+        async session({ session, token }) {
+            session.user = {
+                id: token.user._doc._id            };
+            return session;
+        },
+    }
     
 });

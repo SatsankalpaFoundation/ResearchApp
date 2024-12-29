@@ -8,7 +8,7 @@ function Spec({imageurl, desc}){
         <main className="mt-12 w-[96%] max-w-[1276px] max-md:mt-10 max-md:max-w-full">
           <div className="flex gap-5 max-md:flex-col max-md:gap-0">
             <aside className="flex flex-col w-[38%] max-md:ml-0 max-md:w-full">
-              <div className="flex flex-col justify-start py-8 w-full text-lg rounded-lg border border-solid shadow-sm bg-zinc-950 border-zinc-800 text-zinc-900 max-md:mt-10 max-md:max-w-full">
+              <div className="flex flex-col justify-start py-8 w-full text-lg rounded-lg border border-solid shadow-sm border-zinc-800 text-zinc-900 max-md:mt-10 max-md:max-w-full">
                 <Image
                   src={imageurl}
                   alt="Agastya Maharishi"
@@ -19,7 +19,7 @@ function Spec({imageurl, desc}){
               </div>
             </aside>
             <article className="flex flex-col ml-5 w-[62%] max-md:ml-0 max-md:w-full">
-              <div className="flex flex-col grow pb-5 w-[100vh] text-xl font-semibold rounded-lg border border-solid shadow-sm bg-zinc-950 border-zinc-800 text-neutral-50 max-md:mt-10 max-md:max-w-full">
+              <div className="flex flex-col grow pb-5 w-[100vh] text-xl font-semibold rounded-lg border border-solid shadow-sm border-zinc-800 max-md:mt-10 max-md:max-w-full">
                 <div className="flex flex-col justify-center p-8 max-md:px-5 max-md:max-w-[100vh]">
                   <p className="justify-center max-md:max-w-[100vh] text-wrap overflow-hidden">
                     {desc}</p>

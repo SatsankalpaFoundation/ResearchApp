@@ -6,6 +6,7 @@ import Footer from "@/components/footer";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { HashLoader } from "react-spinners";
+import EmbeddedSearch from "@/components/embed";
 
 
 async function fetchData(name) {
@@ -50,7 +51,7 @@ function Page({ params }) {
       <Nav activeItem="People"/>
       {/* file deepcode ignore GlobalReplacementRegex: <please specify a reason of ignoring this> */}
       <Banner title={Name.replace("_", " ").replace("_", " ")} breadcrumb={["Home", "People", catergory, Name.replace("_", " ")]}/>
-      <Person imageurl={imageurl} desc={desc} />
+      <Person imageurl={imageurl} desc={desc} name={Name}/>
       <Footer />
     </>
   );

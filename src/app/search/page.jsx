@@ -122,8 +122,9 @@ function Page() {
                       {item["Artefact Description"] || item["Description of Book"]}
                     </h2>
                     <Button>
-                      <Link href={`/search/page/${item["Artefact Title"] ? "museum" : "books"}/${item._id.$oid}`}>
-                        View Details
+                      <Link href={`/search/page/${item["Artefact Title"] ? "museum" : "books"}/${item._id.$oid}`} passHref legacyBehavior>
+                        {/* biome-ignore lint/a11y/useValidAnchor: <explanation> */}
+<a target="_blank" rel="noopener noreferrer">View Details</a>
                       </Link>
                     </Button>
                   </div>

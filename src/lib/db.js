@@ -1,3 +1,4 @@
+'use server'
 import mongoose from "mongoose";
 
 
@@ -10,9 +11,8 @@ const connect = async () => {
         dbName: "Satsankalpa",
         bufferCommands: true,
         useNewUrlParser: true,
-        useUnifiedTopology: true,
       });
-      console.log("Connected");
+     console.log("Connected to Satsankalpa");
     } catch (err) {
       console.log("Error: ", err);
       throw new Error("Error: ", err);

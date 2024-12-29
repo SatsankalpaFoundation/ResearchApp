@@ -169,6 +169,8 @@ export default function Nav({ activeItem = "Home" }) {
               className={cn(item, activeItem === "Search" && active)}>
               <Link href="/search">Search</Link>
             </NavigationMenuItem>
+            <NavigationMenuItem className={cn(item, activeItem === "Login" && active)}><Link href="/login">Login</Link></NavigationMenuItem>
+
           </NavigationMenuList>
         </NavigationMenu>
       </div>
@@ -285,9 +287,12 @@ export default function Nav({ activeItem = "Home" }) {
                             <AccordionItem value="04"><AccordionItemTrigger><Link href="/search?q=manuscripts">Manuscripts</Link></AccordionItemTrigger></AccordionItem>
                             <AccordionItem value="05"><AccordionItemTrigger><Link href="/search?q=other">Other</Link></AccordionItemTrigger></AccordionItem>
                             </Accordion>
+                            {/*Om Gum Ganapathaye Namaha*/}
                           </AccordionContent>
                   </AccordionItem>
                   <AccordionItem value="03" className={cn(activeItem === "Search" && active)}><AccordionItemTrigger><Link href="/search">Search</Link>                  </AccordionItemTrigger></AccordionItem>
+                  <AccordionItem value="04" className={cn(activeItem === "Login" && active)}><AccordionItemTrigger><Link href="/login">Login</Link></AccordionItemTrigger></AccordionItem>
+
                 </Accordion>
               </SheetDescription>
             </ScrolllArea>
