@@ -244,7 +244,7 @@ export const columns = [
         </AlertDialogDescription>
       </AlertDialogHeader>
       <AlertDialogFooter asChild>
-      <form method='post' onSubmit={(e) => {deleteUser(user._id);}}>
+      <form method='post' onSubmit={(e) => {console.log(user._id);}}>
         <AlertDialogCancel>Cancel</AlertDialogCancel>
         <AlertDialogAction asChild><Button disabled={user.role === 'Admin' || user.role === 'SuperAdmin'} variant='destructive' type='submit'>Delete</Button></AlertDialogAction>
       </form>

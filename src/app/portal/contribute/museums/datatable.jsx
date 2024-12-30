@@ -68,6 +68,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import editMuseum from "./editMuseum";
 function urlformat(url){
   if (!url){
     return "/placeholdbig.svg"
@@ -288,89 +289,92 @@ export const columns = [
                     you're done.
                   </DialogDescription>
                 </DialogHeader>
-                <ScrollArea className="h-[600px] w-full rounded-md border">
-                <div className="grid gap-4 py-4">
-                  <div className="grid grid-cols-4 items-center gap-4">
+                <form onSubmit={(e) => {
+                  e.preventDefault()
+                  const formData = new FormData(e.target)
+                  editMuseum(
+                    user._id,
+                    formData.get("typeOfSource"),
+                    formData.get("museumName"),
+                    formData.get("museumType"),
+                    formData.get("museumAddress"),
+                    formData.get("contactPerson"),
+                    formData.get("artefactTitle"),
+                    formData.get("artefactDescription"),
+                    formData.get("date"),
+                    formData.get("sources"),
+                    formData.get("medium"),
+                    formData.get("keywords"),
+                    formData.get("dimensions"),
+                    formData.get("creditLine"),
+                    formData.get("pdd"),
+                    formData.get("url"),
+                    formData.get("provenance"),
+                    formData.get("multimedia")
+
+                  )
+                }}>
+                  <ScrollArea className="h-[500px] w-full">
+
+
                     <Label className="text-right">Id</Label>
-                    <Input defaultValue={user["Id"]} className="col-span-3" disabled/>
-                  </div>
-                  <div className="grid grid-cols-4 items-center gap-4">
-                    <Label className="text-right">Date Contributed</Label>
-                    <Input defaultValue={user["Date Contributed"]} className="col-span-3" />
-                  </div>
-                  <div className="grid grid-cols-4 items-center gap-4">
-                    <Label className="text-right">Contributer Email Address</Label>
-                    <Input defaultValue={user["Contributer Email Adress"]} className="col-span-3" />
-                  </div>
-                  <div className="grid grid-cols-4 items-center gap-4">
+                    <Input id="id" defaultValue={user.Id} className="col-span-3" disabled/>
+
                     <Label className="text-right">Type of source</Label>
-                    <Input defaultValue={user["Type of source"]} className="col-span-3" />
-                  </div>
-                  <div className="grid grid-cols-4 items-center gap-4">
+                    <Input id="typeOfSource" name="typeOfSource" defaultValue={user["Type of source"]} className="col-span-3" />
+
                     <Label className="text-right">Name of the Museum</Label>
-                    <Input defaultValue={user["Name of the Museum"]} className="col-span-3" />
-                  </div>
-                  <div className="grid grid-cols-4 items-center gap-4">
+                    <Input id="museumName" name="museumName" defaultValue={user["Name of the Museum"]} className="col-span-3" />
+
                     <Label className="text-right">Type of Museum</Label>
-                    <Input defaultValue={user["Type of Museum"]} className="col-span-3" />
-                  </div>
-                  <div className="grid grid-cols-4 items-center gap-4">
+                    <Input id="museumType" name="museumType" defaultValue={user["Type of Museum"]} className="col-span-3" />
+
                     <Label className="text-right">Address of the Museum</Label>
-                    <Input defaultValue={user["Address of the Museum"]} className="col-span-3" />
-                  </div>
-                  <div className="grid grid-cols-4 items-center gap-4">
+                    <Input id="museumAddress" name="museumAddress" defaultValue={user["Address of the Museum"]} className="col-span-3" />
+
                     <Label className="text-right">Contact Person Name</Label>
-                    <Input defaultValue={user["Contact Person Name"]} className="col-span-3" />
-                  </div>
-                  <div className="grid grid-cols-4 items-center gap-4">
+                    <Input id="contactPerson" name="contactPerson" defaultValue={user["Contact Person Name"]} className="col-span-3" />
+
                     <Label className="text-right">Artefact Title</Label>
-                    <Input defaultValue={user["Artefact Title"]} className="col-span-3" />
-                  </div>
-                  <div className="grid grid-cols-4 items-center gap-4">
+                    <Input id="artefactTitle" name="artefactTitle" defaultValue={user["Artefact Title"]} className="col-span-3" />
+
                     <Label className="text-right">Artefact Description</Label>
-                    <Input defaultValue={user["Artefact Description"]} className="col-span-3" />
-                  </div>
-                  <div className="grid grid-cols-4 items-center gap-4">
+                    <Input id="artefactDescription" name="artefactDescription" defaultValue={user["Artefact Description"]} className="col-span-3" />
+
                     <Label className="text-right">Date</Label>
-                    <Input defaultValue={user["Date"]} className="col-span-3" />
-                  </div>
-                  <div className="grid grid-cols-4 items-center gap-4">
+                    <Input id="date" name="date" defaultValue={user.Date} className="col-span-3" />
+
                     <Label className="text-right">Sources</Label>
-                    <Input defaultValue={user["Sources"]} className="col-span-3" />
-                  </div>
-                  <div className="grid grid-cols-4 items-center gap-4">
+                    <Input id="sources" name="sources" defaultValue={user.Sources} className="col-span-3" />
+
                     <Label className="text-right">Medium</Label>
-                    <Input defaultValue={user["Medium"]} className="col-span-3" />
-                  </div>
-                  <div className="grid grid-cols-4 items-center gap-4">
+                    <Input id="medium" name="medium" defaultValue={user.Medium} className="col-span-3" />
+
                     <Label className="text-right">Keywords used</Label>
-                    <Input defaultValue={user["Keywords used"]} className="col-span-3" />
-                  </div>
-                  <div className="grid grid-cols-4 items-center gap-4">
+                    <Input id="keywords" name="keywords" defaultValue={user["Keywords used"]} className="col-span-3" />
+
                     <Label className="text-right">Dimensions</Label>
-                    <Input defaultValue={user["Dimensions"]} className="col-span-3" />
-                  </div>
-                  <div className="grid grid-cols-4 items-center gap-4">
+                    <Input id="dimensions" name="dimensions" defaultValue={user.Dimensions} className="col-span-3" />
+
                     <Label className="text-right">Credit Line</Label>
-                    <Input defaultValue={user["Credit Line"]} className="col-span-3" />
-                  </div>
-                  <div className="grid grid-cols-4 items-center gap-4">
+                    <Input id="creditLine" name="creditLine" defaultValue={user["Credit Line"]} className="col-span-3" />
+
                     <Label className="text-right">Public Domain Designation (PDD)</Label>
-                    <Input defaultValue={user["Public Domain Designation (PDD)"]} className="col-span-3" />
-                  </div>
-                  <div className="grid grid-cols-4 items-center gap-4">
+                    <Input id="pdd" name="pdd" defaultValue={user["Public Domain Designation (PDD)"]} className="col-span-3" />
+
                     <Label className="text-right">URL</Label>
-                    <Input defaultValue={user["URL"]} className="col-span-3" />
-                  </div>
-                  <div className="grid grid-cols-4 items-center gap-4">
+                    <Input id="url" name="url" defaultValue={user.URL} className="col-span-3" />
+
                     <Label className="text-right">Provenance (Ownership History)</Label>
-                    <Input defaultValue={user["Provenance (Ownership History)"]} className="col-span-3" />
-                  </div>
-                </div>
+                    <Input id="provenance" name="provenance" defaultValue={user["Provenance (Ownership History)"]} className="col-span-3" />
+
+                    <Label className="text-right">Multimedia</Label>
+                    <Input id="multimedia" name="multimedia" defaultValue={user.Multimedia} className="col-span-3" />
                 </ScrollArea>
                 <DialogFooter>
                   <Button type="submit">Save changes</Button>
                 </DialogFooter>
+                </form>
               </DialogContent>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>

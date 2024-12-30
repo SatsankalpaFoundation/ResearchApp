@@ -34,7 +34,7 @@ export async function editBook(
       { 
         "Type of source": sourceType, 
         "Name of the Library": libraryName, 
-        "Tpye of Library": libraryType, 
+        "Type of Library": libraryType, 
         "Address of the Library": libraryAddress, 
         "Book Name": bookName, 
         "Description of Book": String(bookDescription), 
