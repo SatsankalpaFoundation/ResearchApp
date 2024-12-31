@@ -290,7 +290,7 @@ export const columns = [
                   </DialogDescription>
                 </DialogHeader>
                 <form onSubmit={(e) => {
-                  e.preventDefault()
+                  // e.preventDefault()
                   const formData = new FormData(e.target)
                   editMuseum(
                     user._id,
@@ -313,6 +313,7 @@ export const columns = [
                     formData.get("multimedia")
 
                   )
+                  return true  
                 }}>
                   <ScrollArea className="h-[500px] w-full">
 
